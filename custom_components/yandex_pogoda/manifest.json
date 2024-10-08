@@ -1,6 +1,6 @@
 {
-  "domain": "yandex_pogoda",
-  "name": "Yandex Pogoda",
+  "domain": "yandex_pogoda_dev",
+  "name": "Yandex Pogoda Dev",
   "codeowners": [],
   "config_flow": true,
   "documentation": "https://github.com/yandex/pogoda-home-assistant/wiki",
