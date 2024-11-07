@@ -306,7 +306,7 @@ class WeatherUpdater(DataUpdateCoordinator):
             sunrise_begin = parser.parse(day[ATTR_API_SUNRISE_BEGIN_TIME])
             sunset_end = parser.parse(day[ATTR_API_SUNRISE_END_TIME])
             day_dt = parser.parse(day[ATTR_API_TIME])
-            polar = day[ATTR_API_POLAR]
+            polar = day.get(ATTR_API_POLAR)
             for hour in day["hours"]:
                 hour_dt = parser.parse(hour[ATTR_API_TIME])
                 if now_dt > hour_dt:
