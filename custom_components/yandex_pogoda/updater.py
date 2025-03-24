@@ -148,6 +148,7 @@ CURRENT_WEATHER_ATTRIBUTE_TRANSLATION: list[AttributeMapper] = [
     AttributeMapper(ATTR_API_CONDITION, mapping=WEATHER_STATES_CONVERSION),
     AttributeMapper(ATTR_API_FEELS_LIKE_TEMPERATURE),
     AttributeMapper(ATTR_API_SUNRISE_BEGIN_TIME),
+    AttributeMapper(ATTR_API_SUNRISE_END_TIME),
     AttributeMapper(ATTR_API_IMAGE),
     AttributeMapper(ATTR_API_TEMPERATURE),
     AttributeMapper(ATTR_API_WIND_GUST),
