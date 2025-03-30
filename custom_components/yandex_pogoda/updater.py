@@ -147,6 +147,8 @@ CURRENT_WEATHER_ATTRIBUTE_TRANSLATION: list[AttributeMapper] = [
     ),
     AttributeMapper(ATTR_API_CONDITION, mapping=WEATHER_STATES_CONVERSION),
     AttributeMapper(ATTR_API_FEELS_LIKE_TEMPERATURE),
+    AttributeMapper(ATTR_API_SUNRISE_BEGIN_TIME),
+    AttributeMapper(ATTR_API_SUNRISE_END_TIME),
     AttributeMapper(ATTR_API_IMAGE),
     AttributeMapper(ATTR_API_TEMPERATURE),
     AttributeMapper(ATTR_API_WIND_GUST),
@@ -294,6 +296,8 @@ class WeatherUpdater(DataUpdateCoordinator):
             },
             ATTR_FORECAST_HOURLY_ICONS: [],
             ATTR_FORECAST_TWICE_DAILY_ICONS: [],
+            ATTR_API_SUNRISE_BEGIN_TIME: "",
+            ATTR_API_SUNRISE_END_TIME: ""
         }
         self.process_data(
             result,
@@ -307,6 +311,13 @@ class WeatherUpdater(DataUpdateCoordinator):
             sunset_end = parser.parse(day[ATTR_API_SUNRISE_END_TIME])
             day_dt = parser.parse(day[ATTR_API_TIME])
             polar = day.get(ATTR_API_POLAR)
+
+            if sunrise_begin > now_dt and not result[ATTR_API_SUNRISE_BEGIN_TIME]:
+                result[ATTR_API_SUNRISE_BEGIN_TIME] = sunrise_begin
+
+            if sunset_end > now_dt and not result[ATTR_API_SUNRISE_END_TIME]:
+                result[ATTR_API_SUNRISE_END_TIME] = sunset_end
+            
             for hour in day["hours"]:
                 hour_dt = parser.parse(hour[ATTR_API_TIME])
                 if now_dt > hour_dt:
