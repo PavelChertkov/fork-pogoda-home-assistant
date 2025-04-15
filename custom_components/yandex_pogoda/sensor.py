@@ -144,14 +144,12 @@ WEATHER_SENSORS: tuple[SensorEntityDescription, ...] = (
         key=ATTR_API_SUNRISE_BEGIN_TIME,
         name="Next sunrise",
         device_class=SensorDeviceClass.TIMESTAMP,
-        state_class=SensorStateClass.MEASUREMENT,
         entity_registry_enabled_default=True,
     ),
     SensorEntityDescription(
         key=ATTR_API_SUNRISE_END_TIME,
         name="Next sunset",
         device_class=SensorDeviceClass.TIMESTAMP,
-        state_class=SensorStateClass.MEASUREMENT,
         entity_registry_enabled_default=True,
     ),
 )
@@ -214,7 +212,11 @@ class YandexWeatherSensor(SensorEntity, CoordinatorEntity, RestoreEntity):
             self._attr_available = False
         else:
             self._attr_available = True
-            if self.entity_description.key == ATTR_API_SERVER_TIME:
+            if self.entity_description.key in {
+                ATTR_API_SERVER_TIME,
+                ATTR_API_SUNRISE_BEGIN_TIME,
+                ATTR_API_SUNRISE_END_TIME,
+            }:
                 self._attr_native_value = parser.parse(state.state)
             elif self.entity_description.key in UNIT_CONVERTOR_TYPE_MAP:
                 self._attr_native_value = str(
