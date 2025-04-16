@@ -145,12 +145,14 @@ WEATHER_SENSORS: tuple[SensorEntityDescription, ...] = (
         key=ATTR_API_SUNRISE_BEGIN_TIME,
         name="Next sunrise",
         device_class=SensorDeviceClass.TIMESTAMP,
+        state_class=SensorStateClass.MEASUREMENT,
         entity_registry_enabled_default=True,
     ),
     SensorEntityDescription(
         key=ATTR_API_SUNRISE_END_TIME,
         name="Next sunset",
         device_class=SensorDeviceClass.TIMESTAMP,
+        state_class=SensorStateClass.MEASUREMENT,
         entity_registry_enabled_default=True,
     ),
 )
