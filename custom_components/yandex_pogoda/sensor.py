@@ -99,6 +99,7 @@ WEATHER_SENSORS: tuple[SensorEntityDescription, ...] = (
         translation_key=ATTR_API_WIND_BEARING,
         native_unit_of_measurement=DEGREE,
         device_class=SensorDeviceClass.WIND_DIRECTION,
+        state_class=SensorStateClass.MEASUREMENT_ANGLE,
     ),
     SensorEntityDescription(
         key=ATTR_WIND_INTERCARDINAL_DIRECTION,
