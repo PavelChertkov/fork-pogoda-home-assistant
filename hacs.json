@@ -1,7 +1,7 @@
 {
   "name": "Yandex Pogoda",
   "country": "RU",
-  "homeassistant":  "2025.3.0",
+  "homeassistant":  "2025.4.0",
   "zip_release": true,
   "filename": "yandex_pogoda.zip"
 }
