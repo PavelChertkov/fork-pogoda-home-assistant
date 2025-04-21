@@ -1,4 +1,4 @@
-![version_badge](https://img.shields.io/badge/minimum%20HA%20version-2025.3-red)
+![version_badge](https://img.shields.io/badge/minimum%20HA%20version-2025.4-red)
 
 # Yandex weather data provider for Home Assistant
 
