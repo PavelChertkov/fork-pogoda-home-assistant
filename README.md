@@ -12,7 +12,7 @@ Currently Yandex provides free keys for Home Assistant for new users here: https
 
 ### HACS
 
-1. Install Home Assistant Community Store(HACS) on your HA
+1. Install Home Assistant Community Store(HACS) on your Home Assistant
 2. Start typing "Pogoda" in HACS search field
 3. Select: Yandex Pogoda
 4. Press "Download" button
