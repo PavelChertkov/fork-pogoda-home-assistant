@@ -1,2 +1,2 @@
 pytest-homeassistant-custom-component==0.13.195
-bleak==1.0.0
+bleak==0.22.3
