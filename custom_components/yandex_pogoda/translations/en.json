@@ -15,6 +15,7 @@
           "latitude": "Latitude for weather info (default is HA latitude)",
           "longitude": "Longitude for weather info (default is HA longitude)",
           "language": "Language for Yandex weather state sensor",
+          "updates_per_day": "Updates per day",
           "image_source": "Weather condition images"
         }
       }
@@ -37,8 +38,18 @@
           "latitude": "Latitude for weather info (default is HA latitude)",
           "longitude": "Longitude for weather info (default is HA longitude)",
           "language": "Language for Yandex weather state sensor",
+          "updates_per_day": "Updates per day",
           "image_source": "Weather condition images"
         }
+      }
+    }
+  },
+  "selector": {
+    "updates_per_day": {
+      "options": {
+        "rare": "Rare (6 times per day)",
+        "standard": "Standard (12 times per day)",
+        "often": "Often (24 times per day)"
       }
     }
   },

@@ -51,6 +51,7 @@ from .const import (
     ATTR_MIN_FORECAST_TEMPERATURE,
     ATTR_WIND_INTERCARDINAL_DIRECTION,
     DEFAULT_UPDATES_PER_DAY,
+    UPDATES_PER_DAY_MAP,
     CONDITION_ICONS,
     DOMAIN,
     MANUFACTURER,
@@ -196,7 +197,7 @@ class WeatherUpdater(DataUpdateCoordinator):
         hass: HomeAssistant,
         device_id: str,
         name="Yandex Weather",
-        updates_per_day: int = DEFAULT_UPDATES_PER_DAY,
+        updates_per_day: int = UPDATES_PER_DAY_MAP[DEFAULT_UPDATES_PER_DAY],
         weather_data: dict | None = None,
     ):
         """Initialize updater.
@@ -317,7 +318,7 @@ class WeatherUpdater(DataUpdateCoordinator):
 
             if sunset_end > now_dt and not result[ATTR_API_SUNRISE_END_TIME]:
                 result[ATTR_API_SUNRISE_END_TIME] = sunset_end
-            
+
             for hour in day["hours"]:
                 hour_dt = parser.parse(hour[ATTR_API_TIME])
                 if now_dt > hour_dt:

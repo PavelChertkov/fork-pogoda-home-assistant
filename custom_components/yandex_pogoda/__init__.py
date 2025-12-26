@@ -8,11 +8,14 @@ from homeassistant.core import HomeAssistant
 
 from .config_flow import get_value
 from .const import (
+    DEFAULT_UPDATES_PER_DAY,
     DOMAIN,
     ENTRY_NAME,
     PLATFORMS,
     UPDATE_LISTENER,
     UPDATER,
+    UPDATES_PER_DAY,
+    UPDATES_PER_DAY_MAP,
 )
 from .updater import WeatherUpdater
 
@@ -23,6 +26,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     api_key = get_value(entry, CONF_API_KEY)
     latitude = get_value(entry, CONF_LATITUDE, hass.config.latitude)
     longitude = get_value(entry, CONF_LONGITUDE, hass.config.longitude)
+    updates_per_day = get_value(entry, UPDATES_PER_DAY, DEFAULT_UPDATES_PER_DAY)
 
     hass.data.setdefault(DOMAIN, {})
     device_data = hass.data[DOMAIN].get(entry.unique_id, {})
@@ -37,6 +41,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         device_id=entry.unique_id,
         name=name,
         weather_data=weather_data,
+        updates_per_day=UPDATES_PER_DAY_MAP[updates_per_day],
     )
     hass.data[DOMAIN][entry.entry_id] = {
         ENTRY_NAME: name,

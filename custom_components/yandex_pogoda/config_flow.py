@@ -10,7 +10,13 @@ from homeassistant import config_entries
 from homeassistant.const import CONF_API_KEY, CONF_LATITUDE, CONF_LONGITUDE, CONF_NAME
 from homeassistant.core import HomeAssistant, callback
 
-from .const import DEFAULT_NAME, DOMAIN
+from .const import (
+    DEFAULT_NAME,
+    DOMAIN,
+    UPDATES_PER_DAY,
+    UPDATES_PER_DAY_SELECTOR,
+    DEFAULT_UPDATES_PER_DAY,
+)
 from .updater import WeatherUpdater
 
 
@@ -72,6 +78,9 @@ class YandexWeatherConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 vol.Required(
                     CONF_LONGITUDE, default=self.hass.config.longitude
                 ): cv.longitude,
+                vol.Required(
+                    UPDATES_PER_DAY, default=DEFAULT_UPDATES_PER_DAY
+                ): UPDATES_PER_DAY_SELECTOR,
             }
         )
 
@@ -124,6 +133,16 @@ class YandexWeatherOptionsFlow(config_entries.OptionsFlow):
                 vol.Required(
                     CONF_LONGITUDE, default=get_value(self.config_entry, CONF_LONGITUDE)
                 ): cv.longitude,
+                vol.Required(
+                    UPDATES_PER_DAY,
+                    default=get_value(
+                        self.config_entry,
+                        UPDATES_PER_DAY,
+                        self.config_entry.data.get(
+                            UPDATES_PER_DAY, DEFAULT_UPDATES_PER_DAY
+                        ),
+                    ),
+                ): UPDATES_PER_DAY_SELECTOR,
             }
         )
 

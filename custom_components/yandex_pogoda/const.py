@@ -16,13 +16,12 @@ from homeassistant.components.weather import (
     UNIT_CONVERSIONS,
 )
 from homeassistant.const import Platform
-
+from homeassistant.helpers import selector
 
 _LOGGER = logging.getLogger(__name__)
 
 DOMAIN = "yandex_pogoda"
 DEFAULT_NAME = "Yandex Pogoda"
-DEFAULT_UPDATES_PER_DAY = 12
 ATTRIBUTION = "Data provided by Yandex Pogoda"
 MANUFACTURER = "Yandex"
 ENTRY_NAME = "name"
@@ -137,6 +136,21 @@ CONDITION_ICONS = {
 
 TEMPERATURE_CONVERTER = UNIT_CONVERSIONS[ATTR_WEATHER_TEMPERATURE_UNIT]
 WIND_SPEED_CONVERTER = UNIT_CONVERSIONS[ATTR_WEATHER_WIND_SPEED_UNIT]
+
+DEFAULT_UPDATES_PER_DAY = "standard"
+UPDATES_PER_DAY_MAP = {
+    "rare": 6,
+    "standard": 12,
+    "often": 24,
+}
+UPDATES_PER_DAY = "updates_per_day"
+UPDATES_PER_DAY_SELECTOR = selector.SelectSelector(
+    selector.SelectSelectorConfig(
+        options=["rare", "standard", "often"],
+        mode=selector.SelectSelectorMode.DROPDOWN,
+        translation_key=UPDATES_PER_DAY,
+    )
+)
 
 
 def convert_unit_value(
